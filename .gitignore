@@ -1,0 +1,51 @@
+# ===== Java / Quarkus (ah-quote-service) =====
+
+# Build output
+target/
+build/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Quarkus
+.quarkus/
+quarkus.log
+*-dev.log
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+application-local.properties
+*.local.properties
+
+# Compiled / packaged
+*.class
+*.jar
+*.war
+*.ear
+!**/wrapper/*.jar
+
+# Testing
+*.log
+surefire-reports/
+failsafe-reports/
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings/
+.project
+.classpath
+.factorypath
+.DS_Store
+Thumbs.db

@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="cbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#0f1a2e"/>
+    </linearGradient>
+    <filter id="cglow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <!-- reusable pulsing status dot -->
+    <g id="dot"><circle r="5" fill="#22c55e"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/></circle></g>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#38bdf8"/></marker>
+  </defs>
+
+  <rect width="1200" height="720" rx="18" fill="url(#cbg)"/>
+  <text x="40" y="48" fill="#e2e8f0" font-size="26" font-weight="700">A&amp;H PoC — Azure Cloud Resource Map (live request flow)</text>
+  <text x="40" y="76" fill="#7c8aa5" font-size="15">Contoso → Landing Zones → Online · every resource shown with its role · animated packet follows the request path</text>
+
+  <!-- Governance band -->
+  <rect x="40" y="96" width="1120" height="44" rx="10" fill="#111c33" stroke="#334155"/>
+  <text x="56" y="123" fill="#94a3b8" font-size="13" font-weight="600">GOVERNANCE</text>
+  <g font-size="12" fill="#cbd5e1">
+    <rect x="170" y="106" width="150" height="26" rx="6" fill="#1e293b" stroke="#64748b"/><text x="182" y="123">Management Groups</text>
+    <rect x="330" y="106" width="110" height="26" rx="6" fill="#1e293b" stroke="#64748b"/><text x="342" y="123">Azure Policy</text>
+    <rect x="450" y="106" width="170" height="26" rx="6" fill="#1e293b" stroke="#64748b"/><text x="462" y="123">Defender for Cloud</text>
+    <rect x="630" y="106" width="150" height="26" rx="6" fill="#1e293b" stroke="#64748b"/><text x="642" y="123">RBAC (MG-scoped)</text>
+    <rect x="790" y="106" width="150" height="26" rx="6" fill="#1e293b" stroke="#64748b"/><text x="802" y="123">Entra Groups/Roles</text>
+    <rect x="950" y="106" width="195" height="26" rx="6" fill="#1e293b" stroke="#64748b"/><text x="962" y="123">2 subs: prod / nonprod</text>
+  </g>
+
+  <!-- User -->
+  <rect x="40" y="320" width="110" height="80" rx="12" fill="#1e293b" stroke="#38bdf8"/>
+  <text x="95" y="355" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle">User /</text>
+  <text x="95" y="374" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle">Broker</text>
+  <use href="#dot" x="60" y="336"/>
+
+  <!-- Entra ID (identity) -->
+  <rect x="200" y="170" width="190" height="90" rx="12" fill="#172554" stroke="#60a5fa"/>
+  <text x="295" y="198" fill="#93c5fd" font-size="14" font-weight="700" text-anchor="middle">Microsoft Entra ID</text>
+  <text x="295" y="218" fill="#9fb3d1" font-size="11" text-anchor="middle">OIDC · MFA · Conditional Access</text>
+  <text x="295" y="236" fill="#9fb3d1" font-size="11" text-anchor="middle">App Regs · Groups → Roles</text>
+  <use href="#dot" x="220" y="186"/>
+
+  <!-- Front Door / WAF -->
+  <rect x="200" y="320" width="150" height="80" rx="12" fill="#1e293b" stroke="#a78bfa"/>
+  <text x="275" y="352" fill="#c4b5fd" font-size="13" font-weight="700" text-anchor="middle">Front Door</text>
+  <text x="275" y="372" fill="#c4b5fd" font-size="13" font-weight="700" text-anchor="middle">+ WAF / App GW</text>
+  <use href="#dot" x="220" y="336"/>
+
+  <!-- API Management -->
+  <rect x="400" y="320" width="150" height="80" rx="12" fill="#1e293b" stroke="#f472b6"/>
+  <text x="475" y="352" fill="#f9a8d4" font-size="13" font-weight="700" text-anchor="middle">API Management</text>
+  <text x="475" y="372" fill="#f0a4c6" font-size="11" text-anchor="middle">validate-jwt · scopes</text>
+  <use href="#dot" x="420" y="336"/>
+
+  <!-- AKS cluster -->
+  <rect x="600" y="280" width="260" height="190" rx="14" fill="#0f261f" stroke="#2dd4bf"/>
+  <text x="730" y="305" fill="#5eead4" font-size="14" font-weight="700" text-anchor="middle">Azure Kubernetes Service (AKS)</text>
+  <g font-size="12">
+    <rect x="620" y="320" width="220" height="38" rx="8" fill="#134e4a" stroke="#2dd4bf"/><text x="632" y="344" fill="#ccfbf1">UI pods — ah-enrollment-ui (HPA)</text>
+    <rect x="620" y="366" width="220" height="38" rx="8" fill="#134e4a" stroke="#2dd4bf"/><text x="632" y="390" fill="#ccfbf1">quote pods — ah-quote-service (2→20)</text>
+    <rect x="620" y="412" width="220" height="38" rx="8" fill="#134e4a" stroke="#2dd4bf"/><text x="632" y="436" fill="#ccfbf1">data pods — ah-policy-data-service</text>
+  </g>
+  <use href="#dot" x="620" y="296"/>
+
+  <!-- Redis -->
+  <rect x="910" y="200" width="250" height="70" rx="12" fill="#2a1115" stroke="#f87171"/>
+  <text x="1035" y="228" fill="#fca5a5" font-size="14" font-weight="700" text-anchor="middle">Azure Cache for Redis</text>
+  <text x="1035" y="248" fill="#f3b4b4" font-size="11" text-anchor="middle">session:{quoteId} · rate-table cache</text>
+  <use href="#dot" x="930" y="216"/>
+
+  <!-- PostgreSQL shards + replicas -->
+  <rect x="910" y="290" width="250" height="150" rx="12" fill="#221533" stroke="#c084fc"/>
+  <text x="1035" y="316" fill="#d8b4fe" font-size="13" font-weight="700" text-anchor="middle">Azure DB for PostgreSQL</text>
+  <g font-size="11">
+    <rect x="928" y="326" width="100" height="44" rx="7" fill="#3b1d5e" stroke="#c084fc"/><text x="978" y="346" fill="#e9d5ff" text-anchor="middle">Shard 1</text><text x="978" y="362" fill="#cbb6e6" text-anchor="middle">primary</text>
+    <rect x="1042" y="326" width="100" height="44" rx="7" fill="#3b1d5e" stroke="#c084fc"/><text x="1092" y="346" fill="#e9d5ff" text-anchor="middle">Shard 2</text><text x="1092" y="362" fill="#cbb6e6" text-anchor="middle">primary</text>
+    <rect x="928" y="378" width="100" height="40" rx="7" fill="#14532d" stroke="#22c55e"/><text x="978" y="403" fill="#bbf7d0" text-anchor="middle">read replicas</text>
+    <rect x="1042" y="378" width="100" height="40" rx="7" fill="#14532d" stroke="#22c55e"/><text x="1092" y="403" fill="#bbf7d0" text-anchor="middle">read replicas</text>
+  </g>
+  <use href="#dot" x="930" y="306"/>
+
+  <!-- Key Vault -->
+  <rect x="600" y="500" width="160" height="66" rx="12" fill="#1e293b" stroke="#fbbf24"/>
+  <text x="680" y="528" fill="#fde68a" font-size="13" font-weight="700" text-anchor="middle">Key Vault</text>
+  <text x="680" y="548" fill="#f5d98a" font-size="11" text-anchor="middle">secrets via Managed Id</text>
+  <use href="#dot" x="620" y="516"/>
+
+  <!-- ACR -->
+  <rect x="780" y="500" width="160" height="66" rx="12" fill="#1e293b" stroke="#38bdf8"/>
+  <text x="860" y="528" fill="#7dd3fc" font-size="13" font-weight="700" text-anchor="middle">Container Registry</text>
+  <text x="860" y="548" fill="#9cd8f7" font-size="11" text-anchor="middle">images → AKS</text>
+  <use href="#dot" x="800" y="516"/>
+
+  <!-- Monitor -->
+  <rect x="960" y="500" width="200" height="66" rx="12" fill="#1e293b" stroke="#34d399"/>
+  <text x="1060" y="528" fill="#6ee7b7" font-size="13" font-weight="700" text-anchor="middle">Azure Monitor</text>
+  <text x="1060" y="548" fill="#9ae6c4" font-size="11" text-anchor="middle">App Insights · Log Analytics</text>
+  <use href="#dot" x="980" y="516"/>
+
+  <!-- CI/CD -->
+  <rect x="200" y="500" width="340" height="66" rx="12" fill="#1e293b" stroke="#94a3b8"/>
+  <text x="370" y="528" fill="#cbd5e1" font-size="13" font-weight="700" text-anchor="middle">CI/CD — GitHub Actions / Azure DevOps</text>
+  <text x="370" y="548" fill="#a9b7cc" font-size="11" text-anchor="middle">build → ACR → deploy to AKS · run DB migrations</text>
+  <use href="#dot" x="220" y="516"/>
+
+  <!-- Static path lines -->
+  <g stroke-width="2" fill="none" opacity="0.5">
+    <path d="M150 360 L200 360" stroke="#38bdf8" marker-end="url(#arrow)"/>
+    <path d="M95 320 L95 230 L200 215" stroke="#60a5fa"/>
+    <path d="M350 360 L400 360" stroke="#a78bfa" marker-end="url(#arrow)"/>
+    <path d="M550 360 L600 360" stroke="#f472b6" marker-end="url(#arrow)"/>
+    <path d="M860 340 L910 235" stroke="#f87171"/>
+    <path d="M860 390 L910 360" stroke="#c084fc"/>
+    <path d="M730 470 L680 500" stroke="#fbbf24"/>
+    <path d="M860 470 L860 500" stroke="#38bdf8"/>
+    <path d="M840 430 L960 520" stroke="#34d399"/>
+    <path d="M540 533 L600 440" stroke="#94a3b8"/>
+  </g>
+
+  <!-- Animated request packet along main path: User -> WAF -> APIM -> AKS -> Redis -> PostgreSQL -->
+  <circle r="8" fill="#fbbf24" filter="url(#cglow)">
+    <animate attributeName="cx"
+      values="150;200;275;475;730;1035;1035;730;150"
+      keyTimes="0;0.1;0.22;0.38;0.55;0.72;0.85;0.95;1" dur="7s" repeatCount="indefinite"/>
+    <animate attributeName="cy"
+      values="360;360;360;360;360;235;360;360;360"
+      keyTimes="0;0.1;0.22;0.38;0.55;0.72;0.85;0.95;1" dur="7s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- token packet from Entra down into flow -->
+  <circle r="6" fill="#60a5fa" filter="url(#cglow)">
+    <animate attributeName="cx" values="295;95;200;475" keyTimes="0;0.3;0.6;1" dur="3.5s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="260;360;360;360" keyTimes="0;0.3;0.6;1" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="40" y="690" fill="#64748b" font-size="13">Gold packet = user request path · Blue packet = Entra token (JWT) validated at API Management before reaching any pod.</text>
+</svg>

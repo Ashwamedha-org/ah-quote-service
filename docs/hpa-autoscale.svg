@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#111b2e"/>
+    </linearGradient>
+    <linearGradient id="traffic" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#22c55e"/>
+      <stop offset="0.6" stop-color="#eab308"/>
+      <stop offset="1" stop-color="#ef4444"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <rect width="1000" height="520" rx="18" fill="url(#bg)"/>
+  <text x="40" y="52" fill="#e2e8f0" font-size="26" font-weight="700">ah-quote-service — Horizontal Pod Autoscaler (HPA)</text>
+  <text x="40" y="82" fill="#7c8aa5" font-size="16">Open Enrollment spike: 50 rps  →  15,000+ rps  ·  2 pods  →  20 pods  ·  stateless scale-out</text>
+
+  <!-- Traffic meter -->
+  <text x="40" y="140" fill="#94a3b8" font-size="15" font-weight="600">INGRESS TRAFFIC (rps)</text>
+  <rect x="40" y="152" width="60" height="300" rx="8" fill="#1e293b" stroke="#334155"/>
+  <rect x="46" y="152" width="48" height="300" rx="6" fill="url(#traffic)">
+    <animate attributeName="y" values="432;432;160;160;432" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="height" values="20;20;292;292;20" dur="8s" repeatCount="indefinite"/>
+  </rect>
+  <text x="70" y="478" fill="#cbd5e1" font-size="15" text-anchor="middle">
+    <animate attributeName="opacity" values="1;1;1;1;1" dur="8s" repeatCount="indefinite"/>
+    rps
+  </text>
+  <text x="130" y="175" fill="#ef4444" font-size="18" font-weight="700">
+    15,000
+    <animate attributeName="opacity" values="0;0;1;1;0" dur="8s" repeatCount="indefinite"/>
+  </text>
+  <text x="130" y="445" fill="#22c55e" font-size="18" font-weight="700">
+    50
+    <animate attributeName="opacity" values="1;1;0;0;1" dur="8s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- HPA controller -->
+  <rect x="300" y="150" width="200" height="60" rx="12" fill="#1e293b" stroke="#38bdf8"/>
+  <text x="400" y="180" fill="#38bdf8" font-size="16" font-weight="700" text-anchor="middle">HPA Controller</text>
+  <text x="400" y="200" fill="#7c8aa5" font-size="12" text-anchor="middle">target: 65% CPU</text>
+  <circle cx="320" cy="180" r="5" fill="#38bdf8" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Pod grid -->
+  <text x="560" y="140" fill="#94a3b8" font-size="15" font-weight="600">QUARKUS / SPRING BOOT PODS (Kubernetes Deployment)</text>
+  <g>
+    <!-- Each pod fades in in sequence as traffic rises -->
+    <g>
+      <rect x="560" y="160" width="80" height="60" rx="10" fill="#0f766e" stroke="#2dd4bf"/>
+      <text x="600" y="195" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-1</text>
+    </g>
+    <g>
+      <rect x="660" y="160" width="80" height="60" rx="10" fill="#0f766e" stroke="#2dd4bf"/>
+      <text x="700" y="195" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-2</text>
+    </g>
+    <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.25;0.35;0.9;1" dur="8s" repeatCount="indefinite"/>
+      <rect x="760" y="160" width="80" height="60" rx="10" fill="#115e59" stroke="#2dd4bf"/>
+      <text x="800" y="195" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-3</text></g>
+    <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.28;0.4;0.9;1" dur="8s" repeatCount="indefinite"/>
+      <rect x="860" y="160" width="80" height="60" rx="10" fill="#115e59" stroke="#2dd4bf"/>
+      <text x="900" y="195" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-4</text></g>
+    <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.3;0.45;0.9;1" dur="8s" repeatCount="indefinite"/>
+      <rect x="560" y="235" width="80" height="60" rx="10" fill="#115e59" stroke="#2dd4bf"/>
+      <text x="600" y="270" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-5</text></g>
+    <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.33;0.5;0.9;1" dur="8s" repeatCount="indefinite"/>
+      <rect x="660" y="235" width="80" height="60" rx="10" fill="#115e59" stroke="#2dd4bf"/>
+      <text x="700" y="270" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-6</text></g>
+    <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.36;0.55;0.9;1" dur="8s" repeatCount="indefinite"/>
+      <rect x="760" y="235" width="80" height="60" rx="10" fill="#115e59" stroke="#2dd4bf"/>
+      <text x="800" y="270" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-7</text></g>
+    <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.4;0.6;0.9;1" dur="8s" repeatCount="indefinite"/>
+      <rect x="860" y="235" width="80" height="60" rx="10" fill="#115e59" stroke="#2dd4bf"/>
+      <text x="900" y="270" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-8</text></g>
+    <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.45;0.65;0.9;1" dur="8s" repeatCount="indefinite"/>
+      <rect x="760" y="310" width="80" height="60" rx="10" fill="#134e4a" stroke="#2dd4bf"/>
+      <text x="800" y="345" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-19</text></g>
+    <g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5;0.7;0.9;1" dur="8s" repeatCount="indefinite"/>
+      <rect x="860" y="310" width="80" height="60" rx="10" fill="#134e4a" stroke="#2dd4bf"/>
+      <text x="900" y="345" fill="#ccfbf1" font-size="13" text-anchor="middle">pod-20</text></g>
+  </g>
+
+  <!-- Replica counter -->
+  <rect x="560" y="400" width="170" height="70" rx="12" fill="#1e293b" stroke="#334155"/>
+  <text x="575" y="428" fill="#7c8aa5" font-size="13">replicas</text>
+  <text x="575" y="460" fill="#2dd4bf" font-size="30" font-weight="800">
+    <animate attributeName="opacity" values="1;1;1;1;1" dur="8s" repeatCount="indefinite"/>
+    <tspan><animate attributeName="fill" values="#22c55e;#22c55e;#ef4444;#ef4444;#22c55e" dur="8s" repeatCount="indefinite"/></tspan>
+    20 / 20
+  </text>
+
+  <!-- Redis cache -->
+  <rect x="760" y="400" width="180" height="70" rx="12" fill="#1e293b" stroke="#dc2626"/>
+  <text x="775" y="428" fill="#7c8aa5" font-size="13">Redis rate-table cache</text>
+  <text x="775" y="460" fill="#f87171" font-size="26" font-weight="800">hit 92%</text>
+
+  <!-- arrows -->
+  <path d="M100 302 L300 182" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 6" fill="none">
+    <animate attributeName="stroke-dashoffset" values="24;0" dur="0.6s" repeatCount="indefinite"/>
+  </path>
+  <path d="M500 182 L560 190" stroke="#2dd4bf" stroke-width="2" stroke-dasharray="6 6" fill="none">
+    <animate attributeName="stroke-dashoffset" values="24;0" dur="0.6s" repeatCount="indefinite"/>
+  </path>
+</svg>
